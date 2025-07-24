@@ -1,0 +1,15 @@
+<!-- 机器人启动文件：
+        当不包含机器人模型时，需要发布坐标变换
+ -->
+
+<launch>
+    <!-- 启动雷达节点 -->
+    <include file="$(find lslidar_driver)/launch/start.launch" />
+    <include file="$(find pointcloud_to_laserscan)/launch/pointcloud_scan.launch" />
+    <!-- 启动小车节点 -->
+    <include file="$(find scout_base)/launch/scout_mini_base.launch" />
+    <!-- <include file="$(find scout_bringup)/launch/scout_teleop_keyboard.launch" />  -->
+    <!-- 启动相机节点 -->
+    <node name="camera2basefootprint" pkg="tf2_ros" type="static_transform_publisher" args="0.1 0 0.1 0 0 0 /base_link /camera_link"/>
+    <node name="rplidar2basefootprint" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0.1 0 0 0 /base_link /laser"/>
+</launch>

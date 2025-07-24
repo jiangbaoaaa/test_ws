@@ -1,0 +1,2 @@
+lslidar_ros/lslidar_driver:lslidar_ros/lslidar_msgs:mycar_start:nav:pointcloud_to_laserscan:scout_ros/scout_base:scout_ros/scout_bringup:scout_ros/scout_description:scout_ros/scout_msgs:ugv_sdk
+-DCATKIN_DEVEL_PREFIX=/home/jiangbao/test_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jiangbao/test_ws/install -G Unix Makefiles

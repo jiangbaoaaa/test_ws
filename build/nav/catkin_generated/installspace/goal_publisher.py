@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+import rospy
+import time
+from geometry_msgs.msg import PoseStamped
+from tf.transformations import quaternion_from_euler
+
+def send_goal(x=1.0, y=0.5, yaw=0.0):
+    rospy.init_node('simple_goal_publisher')
+    
+    # 关键：必须等待节点初始化完成‌:ml-citation{ref="5" data="citationList"}
+    time.sleep(0.5)  # ROS1 特殊延时处理‌:ml-citation{ref="3,5" data="citationList"}
+    
+    pub = rospy.Publisher('/move_base_simple/goal', PoseStamped, queue_size=10)
+    
+    # 构造目标消息
+    goal = PoseStamped()
+    goal.header.frame_id = "map"  # 必须与全局坐标系一致‌:ml-citation{ref="1,2" data="citationList"}
+    goal.header.stamp = rospy.Time.now()  # 使用当前时间戳‌:ml-citation{ref="3" data="citationList"}
+    goal.pose.position.x = x
+    goal.pose.position.y = y
+    goal.pose.position.z = 0.0
+    
+    # 欧拉角转四元数（偏航角处理）
+    q = quaternion_from_euler(0, 0, yaw)
+    goal.pose.orientation.x = q
+    goal.pose.orientation.y = q‌:ml-citation{ref="1" data="citationList"}
+    goal.pose.orientation.z = q‌:ml-citation{ref="5" data="citationList"}
+    goal.pose.orientation.w = q‌:ml-citation{ref="2" data="citationList"}
+    
+    # 等待话题连接（避免首次丢失）
+    while pub.get_num_connections() < 1:
+        rospy.loginfo("等待订阅者连接...")
+        rospy.sleep(0.1)
+    
+    pub.publish(goal)
+    rospy.loginfo(f"✅ 目标已发布: x={x}, y={y}, yaw={yaw} rad")
+
+if __name__ == '__main__':
+    try:
+        # 示例目标：x=0.1m, y=0.15m, 朝向45°(0.785 rad)
+        send_goal(0.1, 0.15, 0.785)
+    except rospy.ROSInterruptException:
+        pass

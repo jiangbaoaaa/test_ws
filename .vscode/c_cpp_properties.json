@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/noetic/include/**",
+        "/home/jiangbao/test_ws/src/lslidar_ros/lslidar_driver/include/**",
+        "/home/jiangbao/test_ws/src/mycar_start/include/**",
+        "/home/jiangbao/test_ws/src/nav/include/**",
+        "/home/jiangbao/test_ws/src/pointcloud_to_laserscan/include/**",
+        "/home/jiangbao/test_ws/src/scout_ros/scout_base/include/**",
+        "/home/jiangbao/test_ws/src/ugv_sdk/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

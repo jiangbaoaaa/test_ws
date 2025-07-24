@@ -1,0 +1,13 @@
+<!-- 机器人启动文件：
+
+ -->
+<launch>
+        <include file="$(find lslidar_driver)/launch/start.launch" />
+        <include file="$(find pointcloud_to_laserscan)/launch/pointcloud_scan.launch" />
+        <include file="$(find scout_base)/launch/scout_mini_base.launch" />
+        <!-- <include file="$(find scout_bringup)/launch/scout_teleop_keyboard.launch" /> -->
+        <include file="$(find scout_description)/launch/display_scout_mini.launch" />
+</launch>
+
+
+
